@@ -1,14 +1,14 @@
 [package]
-name = "colored"
-description = "The most simple way to add colors in your terminal"
+name = "mincolor"
+description = "The most simple way to add colors in your terminal, without the std crate"
 version = "2.0.0"
 edition = "2021"
-authors = ["Thomas Wickham <mackwic@gmail.com>"]
+authors = ["Juliette Cordor", "Thomas Wickham <mackwic@gmail.com>"]
 license = "MPL-2.0"
-homepage = "https://github.com/mackwic/colored"
-repository = "https://github.com/mackwic/colored"
+homepage = "https://github.com/jewlexx/mincolor"
+repository = "https://github.com/jewlexx/mincolor"
 readme = "README.md"
-keywords = ["color", "string", "term", "ansi_term", "term-painter"]
+keywords = ["color", "string", "term", "ansi_term", "term-painter", "no-std"]
 
 [features]
 # with this feature, no color will ever be written

@@ -1,9 +1,9 @@
-extern crate colored;
+extern crate mincolor;
 
-use colored::*;
+use mincolor::*;
 
 /*
- * This example use colored strings in a nested way (at line 14). It shows that colored is able to
+ * This example use mincolor strings in a nested way (at line 14). It shows that colored is able to
  * keep the correct color on the “!lalalala” part.
  */
 

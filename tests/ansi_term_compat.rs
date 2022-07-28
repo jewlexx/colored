@@ -2,10 +2,10 @@
 #![allow(unused_imports)]
 
 extern crate ansi_term;
-extern crate colored;
+extern crate mincolor;
 
 use ansi_term::*;
-use colored::*;
+use mincolor::*;
 
 macro_rules! test_simple_color {
     ($string:expr, $colored_name:ident, $ansi_term_name:ident) => {
@@ -22,7 +22,7 @@ macro_rules! test_simple_color {
 
 mod compat_colors {
     use super::ansi_term::*;
-    use super::colored::*;
+    use super::mincolor::*;
 
     test_simple_color!("test string", black, Black);
     test_simple_color!("test string", red, Red);
@@ -50,8 +50,8 @@ macro_rules! test_simple_style {
 mod compat_styles {
     use super::ansi_term;
     use super::ansi_term::*;
-    use super::colored;
-    use super::colored::*;
+    use super::mincolor;
+    use super::mincolor::*;
 
     test_simple_style!("test string", bold);
     test_simple_style!("test string", dimmed);
@@ -81,8 +81,8 @@ macro_rules! test_simple_bgcolor {
 mod compat_bgcolors {
     use super::ansi_term;
     use super::ansi_term::*;
-    use super::colored;
-    use super::colored::*;
+    use super::mincolor;
+    use super::mincolor::*;
 
     test_simple_bgcolor!("test string", on_black, Black);
     test_simple_bgcolor!("test string", on_red, Red);
@@ -97,8 +97,8 @@ mod compat_bgcolors {
 mod compat_complex {
     use super::ansi_term;
     use super::ansi_term::*;
-    use super::colored;
-    use super::colored::*;
+    use super::mincolor;
+    use super::mincolor::*;
 
     #[test]
     fn complex1() {
@@ -124,8 +124,8 @@ mod compat_complex {
 mod compat_overrides {
     use super::ansi_term;
     use super::ansi_term::*;
-    use super::colored;
-    use super::colored::*;
+    use super::mincolor;
+    use super::mincolor::*;
 
     #[test]
     fn overrides1() {

@@ -1,9 +1,9 @@
 #![cfg(not(feature = "no-color"))]
 #![allow(unused_imports)]
 
-extern crate colored;
+extern crate mincolor;
 
-use colored::*;
+use mincolor::*;
 
 mod lib_tests {
     use super::*;

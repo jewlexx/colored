@@ -1,6 +1,6 @@
 //!Coloring terminal so simple, you already know how to do it !
 //!
-//!    use colored::Colorize;
+//!    use mincolor::Colorize;
 //!
 //!    "this is blue".blue();
 //!    "this is red".red();
@@ -331,7 +331,7 @@ impl ColoredString {
     /// Get the current background color applied.
     ///
     /// ```rust
-    /// # use colored::*;
+    /// # use mincolor::*;
     /// let cstr = "".blue();
     /// assert_eq!(cstr.fgcolor(), Some(Color::Blue));
     /// let cstr = cstr.clear();
@@ -344,7 +344,7 @@ impl ColoredString {
     /// Get the current background color applied.
     ///
     /// ```rust
-    /// # use colored::*;
+    /// # use mincolor::*;
     /// let cstr = "".on_blue();
     /// assert_eq!(cstr.bgcolor(), Some(Color::Blue));
     /// let cstr = cstr.clear();
@@ -357,7 +357,7 @@ impl ColoredString {
     /// Get the current [`Style`] which can be check if it contains a [`Styles`].
     ///
     /// ```rust
-    /// # use colored::*;
+    /// # use mincolor::*;
     /// let colored = "".bold().italic();
     /// assert_eq!(colored.style().contains(Styles::Bold), true);
     /// assert_eq!(colored.style().contains(Styles::Italic), true);
@@ -370,7 +370,7 @@ impl ColoredString {
     /// Checks if the colored string has no color or styling.
     ///
     /// ```rust
-    /// # use colored::*;
+    /// # use mincolor::*;
     /// let cstr = "".red();
     /// assert_eq!(cstr.is_plain(), false);
     /// let cstr = cstr.clear();

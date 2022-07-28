@@ -1,9 +1,9 @@
 # Colored
 
 [![Build
-Status](https://travis-ci.org/mackwic/colored.svg?branch=master)](https://travis-ci.org/mackwic/colored) [![Crates.io](https://img.shields.io/crates/v/colored.svg?maxAge=2592000)](https://crates.io/crates/colored) [![Crates.io](https://img.shields.io/crates/l/colored.svg?maxAge=2592000)](https://github.com/mackwic/colored/blob/master/LICENSE)
+Status](https://travis-ci.org/jewlexx/colored.svg?branch=master)](https://travis-ci.org/jewlexx/colored) [![Crates.io](https://img.shields.io/crates/v/colored.svg?maxAge=2592000)](https://crates.io/crates/colored) [![Crates.io](https://img.shields.io/crates/l/colored.svg?maxAge=2592000)](https://github.com/jewlexx/colored/blob/master/LICENSE)
 
-Coloring terminal so simple, you already know how to do it!
+A stripped down fork of [Colored](https://crates.io/crates/colored), designed for `no-std` environments, while maintaining ease of use!
 
 ```rust
     "this is blue".blue();
@@ -37,9 +37,9 @@ colored = "2"
 and add this to your `lib.rs` or `main.rs`:
 
 ```rust
-    extern crate colored; // not needed in Rust 2018+
+    extern crate mincolor; // not needed in Rust 2018+
 
-    use colored::*;
+    use mincolor::*;
 
     // test the example with `cargo run --example most_simple`
     fn main() {
@@ -109,7 +109,6 @@ let color_res : Result<Color, ()> = "zorglub".parse();
 "red string".color(color_res.unwrap_or(Color::Red));
 ```
 
-
 ##### Colorization control
 
 If you want to disable any coloring at compile time, you can simply do so by
@@ -135,16 +134,15 @@ Use the install instructions located [here](https://docs.docker.com/v17.12/insta
 
 ### Build the Docker image
 
-```docker build -t colored_image .```
+`docker build -t colored_image .`
 
 ### Build the library
 
-```docker run --rm -it -v "$PWD":/src -u `id -u`:`id -g` colored_image /bin/bash -c "cargo build"```
+`` docker run --rm -it -v "$PWD":/src -u `id -u`:`id -g` colored_image /bin/bash -c "cargo build" ``
 
 ### Test the library
 
-```docker run --rm -it -v "$PWD":/src -u `id -u`:`id -g` colored_image /bin/bash -c "cargo test"```
-
+`` docker run --rm -it -v "$PWD":/src -u `id -u`:`id -g` colored_image /bin/bash -c "cargo test" ``
 
 ## Todo
 
@@ -154,7 +152,7 @@ Use the install instructions located [here](https://docs.docker.com/v17.12/insta
 
 This library wouldn't have been the same without the marvelous ruby gem [colored](https://github.com/defunkt/colored).
 
-Thanks for the [ansi\_term crate](https://github.com/ogham/rust-ansi-term) for
+Thanks for the [ansi_term crate](https://github.com/ogham/rust-ansi-term) for
 providing a reference implementation, which greatly helped making this crate
 output correct strings.
 
@@ -165,6 +163,7 @@ output correct strings.
 root of the repository.
 
 In non legal terms it means that:
+
 - if you fix a bug, you MUST give me the code of the fix (it's only fair)
 - if you change/extend the API, you MUST give me the code you changed in the
   files under MPL2.

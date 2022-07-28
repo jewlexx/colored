@@ -92,7 +92,7 @@ impl Style {
     /// Check if the current style has one of [`Styles`](Styles) switched on.
     ///
     /// ```rust
-    /// # use colored::*;
+    /// # use mincolor::*;
     /// let colored = "".bold().italic();
     /// assert_eq!(colored.style().contains(Styles::Bold), true);
     /// assert_eq!(colored.style().contains(Styles::Italic), true);

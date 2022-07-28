@@ -1,6 +1,6 @@
-extern crate colored;
+extern crate mincolor;
 
-use colored::*;
+use mincolor::*;
 
 fn main() {
     // TADAA !
