@@ -27,10 +27,6 @@
 #![warn(missing_docs)]
 
 extern crate alloc;
-extern crate atty;
-
-#[cfg(test)]
-extern crate rspec;
 
 mod color;
 mod style;
