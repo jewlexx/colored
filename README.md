@@ -1,7 +1,7 @@
-# Colored
+# MinColor
 
 [![Build
-Status](https://travis-ci.org/jewlexx/colored.svg?branch=master)](https://travis-ci.org/jewlexx/colored) [![Crates.io](https://img.shields.io/crates/v/colored.svg?maxAge=2592000)](https://crates.io/crates/colored) [![Crates.io](https://img.shields.io/crates/l/colored.svg?maxAge=2592000)](https://github.com/jewlexx/colored/blob/master/LICENSE)
+Status](https://travis-ci.org/jewlexx/mincolor.svg?branch=master)](https://travis-ci.org/jewlexx/mincolor) [![Crates.io](https://img.shields.io/crates/v/mincolor.svg?maxAge=2592000)](https://crates.io/crates/mincolor) [![Crates.io](https://img.shields.io/crates/l/mincolor.svg?maxAge=2592000)](https://github.com/jewlexx/mincolor/blob/master/LICENSE)
 
 A stripped down fork of [Colored](https://crates.io/crates/colored), designed for `no-std` environments, while maintaining ease of use!
 
@@ -31,7 +31,7 @@ Add this in your `Cargo.toml`:
 
 ```toml
 [dependencies]
-colored = "2"
+mincolor = "2"
 ```
 
 and add this to your `lib.rs` or `main.rs`:
@@ -72,7 +72,7 @@ Bright Background colors: prepend the color by `on_bright_`. Not hard at all.
 
 #### Truecolors
 
-Colored has support for truecolors where you can specify any arbitrary rgb value.
+Mincolor has support for truecolors where you can specify any arbitrary rgb value.
 
 This feature will only work correctly in terminals which support true colors (i.e. most modern terminals).
 
@@ -120,11 +120,11 @@ For example, you can do this in your `Cargo.toml` to disable color in tests:
 [features]
 # this effectively enable the feature `no-color` of colored when testing with
 # `cargo test --feature dumb_terminal`
-dumb_terminal = ["colored/no-color"]
+dumb_terminal = ["mincolor/no-color"]
 ```
 
 You can use have even finer control by using the
-`colored::control::set_override` method.
+`mincolor::control::set_override` method.
 
 ## Build with Docker
 
@@ -159,7 +159,7 @@ output correct strings.
 ## License
 
 [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/). See the
-[LICENSE](https://github.com/mackwic/colored/blob/master/LICENSE) file at the
+[LICENSE](https://github.com/jewlexx/mincolor/blob/master/LICENSE) file at the
 root of the repository.
 
 In non legal terms it means that:
@@ -173,6 +173,7 @@ In non legal terms it means that:
 
 ## Contributors
 
+- Juliette Cordor: [@jewlexx](https://github.com/jewlexx)
 - Thomas Wickham: [@mackwic](https://github.com/mackwic)
 - Corey "See More" Richardson: [@cmr](https://github.com/cmr)
 - Iban Eguia: [@Razican](https://github.com/Razican)
