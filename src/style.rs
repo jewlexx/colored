@@ -1,3 +1,5 @@
+use alloc::{string::String, vec::Vec};
+
 const CLEARV: u8 = 0b0000_0000;
 const BOLD: u8 = 0b0000_0001;
 const UNDERLINE: u8 = 0b0000_0010;
@@ -286,8 +288,8 @@ mod tests {
         let mut style = Style(Styles::Bold.to_u8());
         style.add(Styles::Italic);
 
-        assert_eq!(style.contains(Styles::Bold), true);
-        assert_eq!(style.contains(Styles::Italic), true);
-        assert_eq!(style.contains(Styles::Dimmed), false);
+        assert!(style.contains(Styles::Bold));
+        assert!(style.contains(Styles::Italic));
+        assert!(!style.contains(Styles::Dimmed));
     }
 }

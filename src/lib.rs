@@ -23,29 +23,27 @@
 //!
 //! See [the `Colorize` trait](./trait.Colorize.html) for all the methods.
 //!
+#![no_std]
 #![warn(missing_docs)]
 
+extern crate alloc;
 extern crate atty;
-#[macro_use]
-extern crate lazy_static;
-#[cfg(windows)]
-extern crate winapi;
 
 #[cfg(test)]
 extern crate rspec;
 
 mod color;
-pub mod control;
 mod style;
+
+use core::fmt;
 
 pub use self::customcolors::CustomColor;
 
 /// Custom colors support.
 pub mod customcolors;
 
+use alloc::{borrow::Cow, string::String, vec::Vec};
 pub use color::*;
-
-use std::{borrow::Cow, fmt, ops::Deref};
 
 pub use style::{Style, Styles};
 
@@ -386,18 +384,13 @@ impl ColoredString {
         self.bgcolor.is_none() && self.fgcolor.is_none() && self.style == style::CLEAR
     }
 
-    #[cfg(not(feature = "no-color"))]
-    fn has_colors(&self) -> bool {
-        control::SHOULD_COLORIZE.should_colorize()
-    }
-
     #[cfg(feature = "no-color")]
     fn has_colors(&self) -> bool {
         false
     }
 
     fn compute_style(&self) -> String {
-        if !self.has_colors() || self.is_plain() {
+        if self.is_plain() {
             return String::new();
         }
 
@@ -431,7 +424,7 @@ impl ColoredString {
     }
 
     fn escape_inner_reset_sequences(&self) -> Cow<str> {
-        if !self.has_colors() || self.is_plain() {
+        if self.is_plain() {
             return self.input.as_str().into();
         }
 
@@ -476,7 +469,7 @@ impl Default for ColoredString {
     }
 }
 
-impl Deref for ColoredString {
+impl core::ops::Deref for ColoredString {
     type Target = str;
     fn deref(&self) -> &str {
         &self.input
@@ -606,7 +599,7 @@ impl<'a> Colorize for &'a str {
 
 impl fmt::Display for ColoredString {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        if !self.has_colors() || self.is_plain() {
+        if self.is_plain() {
             return <String as fmt::Display>::fmt(&self.input, f);
         }
 
@@ -622,6 +615,8 @@ impl fmt::Display for ColoredString {
 
 #[cfg(test)]
 mod tests {
+    use alloc::format;
+
     use super::*;
 
     #[test]
@@ -633,48 +628,6 @@ mod tests {
             format!("{:1.1}", "toto".blue()).len(),
             format!("{:1.1}", "1".blue()).len()
         )
-    }
-
-    #[test]
-    fn it_works() {
-        let toto = "toto";
-        println!("{}", toto.red());
-        println!("{}", String::from(toto).red());
-        println!("{}", toto.blue());
-
-        println!("blue style ****");
-        println!("{}", toto.bold());
-        println!("{}", "yeah ! Red bold !".red().bold());
-        println!("{}", "yeah ! Yellow bold !".bold().yellow());
-        println!("{}", toto.bold().blue());
-        println!("{}", toto.blue().bold());
-        println!("{}", toto.blue().bold().underline());
-        println!("{}", toto.blue().italic());
-        println!("******");
-        println!("test clearing");
-        println!("{}", "red cleared".red().clear());
-        println!("{}", "bold cyan cleared".bold().cyan().clear());
-        println!("******");
-        println!("Bg tests");
-        println!("{}", toto.green().on_blue());
-        println!("{}", toto.on_magenta().yellow());
-        println!("{}", toto.purple().on_yellow());
-        println!("{}", toto.magenta().on_white());
-        println!("{}", toto.cyan().on_green());
-        println!("{}", toto.black().on_white());
-        println!("******");
-        println!("{}", toto.green());
-        println!("{}", toto.yellow());
-        println!("{}", toto.purple());
-        println!("{}", toto.magenta());
-        println!("{}", toto.cyan());
-        println!("{}", toto.white());
-        println!("{}", toto.white().red().blue().green());
-        println!("{}", toto.truecolor(255, 0, 0));
-        println!("{}", toto.truecolor(255, 255, 0));
-        println!("{}", toto.on_truecolor(0, 80, 80));
-        // uncomment to see term output
-        // assert!(false)
     }
 
     #[test]
@@ -817,8 +770,6 @@ mod tests {
             italic, reset, blue, italic, reset, blue, italic, reset, blue
         );
 
-        println!("first: {}\nsecond: {}", expected, output);
-
         assert_eq!(expected, output);
     }
 
@@ -859,8 +810,8 @@ mod tests {
         let cstring = cstring.bold().italic();
         assert_eq!(cstring.fgcolor(), Some(Color::Blue));
         assert_eq!(cstring.bgcolor(), Some(Color::BrightYellow));
-        assert_eq!(cstring.style().contains(Styles::Bold), true);
-        assert_eq!(cstring.style().contains(Styles::Italic), true);
-        assert_eq!(cstring.style().contains(Styles::Dimmed), false);
+        assert!(cstring.style().contains(Styles::Bold));
+        assert!(cstring.style().contains(Styles::Italic));
+        assert!(!cstring.style().contains(Styles::Dimmed));
     }
 }

@@ -1,4 +1,6 @@
-use std::{borrow::Cow, str::FromStr};
+use core::str::FromStr;
+
+use alloc::{borrow::Cow, format, string::String};
 
 /// The 8 standard colors.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
