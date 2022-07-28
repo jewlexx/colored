@@ -8,7 +8,7 @@ license = "MPL-2.0"
 homepage = "https://github.com/jewlexx/mincolor"
 repository = "https://github.com/jewlexx/mincolor"
 readme = "README.md"
-keywords = ["color", "string", "term", "ansi_term", "term-painter", "no-std"]
+keywords = ["color", "string", "term", "ansi_term", "no-std"]
 
 [features]
 # with this feature, no color will ever be written
